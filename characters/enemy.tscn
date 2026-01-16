@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw4l54gwpwmmt"]
+
+[ext_resource type="PackedScene" uid="uid://c3ab1g4s6pk28" path="res://characters/character.tscn" id="1_nhupr"]
+[ext_resource type="Script" uid="uid://falcmqkm1yi3" path="res://characters/enemy.gd" id="2_1ohc2"]
+[ext_resource type="Texture2D" uid="uid://cr1gkl3c7ib31" path="res://Assets/skins/red/red_body.png" id="3_toq4n"]
+[ext_resource type="Texture2D" uid="uid://lrrkpb7afgci" path="res://Assets/skins/red/red_arms.png" id="4_u8tuc"]
+[ext_resource type="Texture2D" uid="uid://baxvac0wn3wc1" path="res://Assets/skins/red/red_head.png" id="5_f76jb"]
+
+[node name="Enemy" instance=ExtResource("1_nhupr")]
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("2_1ohc2")
+speed = 700.0
+
+[node name="body" parent="." index="0"]
+texture = ExtResource("3_toq4n")
+
+[node name="arms" parent="body" index="0"]
+texture = ExtResource("4_u8tuc")
+
+[node name="head" parent="body" index="2"]
+texture = ExtResource("5_f76jb")
+
+[node name="ShootTimer" type="Timer" parent="." index="3"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
+path_desired_distance = 96.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 100.0
+debug_path_custom_color = Color(6.016344e-07, 0.3985854, 0.083414294, 1)
+debug_path_custom_point_size = 30.25
+debug_path_custom_line_width = 16.53
+
+[node name="PathTimer" type="Timer" parent="." index="5"]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]

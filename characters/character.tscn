@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3ab1g4s6pk28"]
+
+[ext_resource type="Script" uid="uid://b6rspkaoc8nct" path="res://characters/character.gd" id="1_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bdw7vb5wcboid" path="res://Assets/skins/blue/blue_body.png" id="2_mdkfl"]
+[ext_resource type="Texture2D" uid="uid://fsu47jq5jswn" path="res://Assets/skins/blue/blue_cap.png" id="3_b1u1o"]
+[ext_resource type="Texture2D" uid="uid://dmq4ee8ed70ja" path="res://Assets/skins/shotgun.png" id="4_b1u1o"]
+[ext_resource type="Texture2D" uid="uid://cyho41rqx2h8p" path="res://Assets/skins/blue/blue_arms.png" id="4_ke030"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mdkfl"]
+radius = 142.00352
+
+[node name="Character" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_sweqy")
+
+[node name="body" type="Sprite2D" parent="."]
+position = Vector2(-55.72, 0)
+rotation = -1.5707964
+texture = ExtResource("2_mdkfl")
+
+[node name="arms" type="Sprite2D" parent="body"]
+position = Vector2(0, 92)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_ke030")
+
+[node name="gun" type="Sprite2D" parent="body"]
+position = Vector2(-12, 243)
+texture = ExtResource("4_b1u1o")
+
+[node name="head" type="Sprite2D" parent="body"]
+position = Vector2(0, 51)
+texture = ExtResource("3_b1u1o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mdkfl")
+
+[node name="end_of_gun" type="Marker2D" parent="."]
+position = Vector2(372, 9)
+gizmo_extents = 83.2
