@@ -25,10 +25,10 @@
 ### Player aiming and shooting:
 This was relatively straightforward to achieve thanks to godot 4 and it's built-in functions. 
 Making the player look/aim at the cursor was achieved by passing `get_global_mouse_position` to Node2D's `look_at(point: Vector2)` that set the player's X+ direction towards the mouse position.
-and shooting was simply listening for the left mouse button to be clicked and spawn the projective at the nozzle of the gun (marker2D to get the position of the nozzle) and apply impulse to it, hence making it shoot in player's forward (x+) direction.
+and shooting was simply listening for the left mouse button to be clicked and spawn the projectile at the nozzle of the gun (marker2D to get the position of the nozzle) and apply impulse to it, hence making it shoot in player's forward (x+) direction.
 
 ### Enemy spawning and wave logic:
-`game.gd` script handles this by spawning an initial wave on `_ready` that stores all the enemies in the `enemies` node and on process we check the number of children in `enemies` node, if they are 0, then we spawn a new wave. after spawning each wave the script increase following properties for the next wave to be more brutual: number of enemies, speed of enemies, how long should an enemy wait before shooting next bullet, and the impulse of the bullet shot by enemy and player (to keep the player always slightly stronger than an enemy)
+`game.gd` script handles this by spawning an initial wave on `_ready` that stores all the enemies in the `enemies` node and on process we check the number of children in `enemies` node, if they are 0, then we spawn a new wave. after spawning each wave the script increase following properties for the next wave to be more brutal: number of enemies, speed of enemies, how long should an enemy wait before shooting next bullet, and the impulse of the bullet shot by enemy and player (to keep the player always slightly stronger than an enemy)
 
 ### Damage dealth between entities:
 Since both the player and enemy inherit character.gd script, they have `hit()` function, upon being hit a bullet check if the colliding object has a `hit()` function and call it if it does.
